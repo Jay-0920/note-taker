@@ -37,8 +37,6 @@ server.get("/api/notes", (req, res) =>{
 server.post("/api/notes", (req,res) => {
     const newNote = req.body;
 
-    console.log(newNote);
-
     readFileAsync(path.join(__dirname, "/db/db.json"), "utf-8").then(data =>{
         const api = JSON.parse(data);
         api.push(newNote);
@@ -55,14 +53,9 @@ server.delete("/api/notes/:id", (req, res) =>{
     const note = req.params.id;
     readFileAsync(path.join(__dirname, "/db/db.json"), "utf-8").then(data =>{
         const api = JSON.parse(data);
-        console.log(api);
-        console.log(api.indexOf(note));
         for(const currentNote of api)
-        {
             if(currentNote.title == note)
                 api.splice(api.indexOf(currentNote),1);
-            console.log(api);
-        }
 
         writeFileAsync(path.join(__dirname, "/db/db.json"), JSON.stringify(api)).then(err =>{
             if(err) throw err;
