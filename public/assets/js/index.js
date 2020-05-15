@@ -1,4 +1,4 @@
-var $noteTitle = $(".note-title");
+var $noteTitle = $(".note-title")
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
@@ -71,6 +71,7 @@ var handleNoteDelete = function(event) {
     .parent(".list-group-item")
     .data();
 
+  console.log(note);
   if (activeNote.id === note.id) {
     activeNote = {};
   }
